@@ -9,7 +9,10 @@ resource "helm_release" "nginx_ingress" {
 
   values = [
     templatefile("${path.module}/config/nginx_ingress_config.yaml.tmpl", {
-      ip_address = var.load_balancer_ip
+      ip_address   = var.load_balancer_ip
+      enable_tls   = var.enable_tls
+      tls_hostname = var.tls_hostname
+      secret_name  = var.tls_secret
     }),
     var.additional_yaml_config
   ]
