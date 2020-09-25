@@ -32,6 +32,24 @@ variable "load_balancer_ip" {
   type        = string
 }
 
+variable "enable_tls" {
+  description = "enable tls (requires entries for hosts and secret name"
+  type        = bool
+  default     = false
+}
+
+variable "tls_hostname" {
+  description = "hostname to secure with tls"
+  type        = string
+  default     = ""
+}
+
+variable "tls_secret" {
+  description = "name of k8s secret containing tls crt/key"
+  type        = string
+  default     = ""
+}
+
 variable "additional_yaml_config" {
   description = "yaml config for helm chart to be processed last"
   type        = string

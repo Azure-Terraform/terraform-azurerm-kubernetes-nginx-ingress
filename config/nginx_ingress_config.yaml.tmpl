@@ -1,3 +1,12 @@
 controller:
   service:
     loadBalancerIP: ${ip_address}
+%{ if enable_tls == true ~}
+  config:
+    force-ssl-redirect: "true"
+spec:
+  tls:
+  - hosts:
+      - ${tls_hostname}
+    secretName: ${secret_name}
+%{ endif ~}
