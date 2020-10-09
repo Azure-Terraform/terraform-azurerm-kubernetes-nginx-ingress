@@ -17,7 +17,7 @@ This module will install an NGINX ingress module into an AKS cluster.  This is l
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
 | additional\_yaml\_config | yaml config for helm chart to be processed last | `string` | `""` | no |
-| enable\_default\_tls | enable default tls (entry secret name) | `bool` | `false` | no |
+| enable\_default\_tls | enable default tls (requires tls\_default\_secret) | `bool` | `false` | no |
 | helm\_chart\_version | helm chart version | `string` | `"3.4.1"` | no |
 | helm\_release\_name | helm release name | `string` | n/a | yes |
 | helm\_repository | nginx-ingress helm repository url | `string` | `"https://kubernetes.github.io/ingress-nginx"` | no |
