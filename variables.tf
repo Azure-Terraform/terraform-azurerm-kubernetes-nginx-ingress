@@ -1,13 +1,13 @@
 variable "helm_repository" {
   description = "nginx-ingress helm repository url"
   type        = string
-  default     = "https://kubernetes-charts.storage.googleapis.com"
+  default     = "https://kubernetes.github.io/ingress-nginx"
 }
 
 variable "helm_chart_version" {
   description = "helm chart version"
   type        = string
-  default     = "1.39.0"
+  default     = "3.4.1"
 }
 
 variable "helm_release_name" {
@@ -27,25 +27,31 @@ variable "kubernetes_create_namespace" {
   default     = true
 }
 
+variable "ingress_class" {
+  description = "name of the ingress class to route through this controller"
+  type        = string
+  default     = "nginx"
+}
+
 variable "load_balancer_ip" {
   description = "loadBalancerIP"
   type        = string
 }
 
-variable "enable_tls" {
-  description = "enable tls (requires entries for hosts and secret name"
+variable "replica_count" {
+  description = "The number of replicas of the Ingress controller deployment."	
+  type        = number
+  default     = 1
+}
+
+variable "enable_default_tls" {
+  description = "enable default tls (entry secret name)"
   type        = bool
   default     = false
 }
 
-variable "tls_hostname" {
-  description = "hostname to secure with tls"
-  type        = string
-  default     = ""
-}
-
-variable "tls_secret" {
-  description = "name of k8s secret containing tls crt/key"
+variable "tls_default_secret" {
+  description = "k8s secret containing crt/key for default tls certificate (format is {namespace}/{secret})"
   type        = string
   default     = ""
 }

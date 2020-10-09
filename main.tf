@@ -1,7 +1,7 @@
 resource "helm_release" "nginx_ingress" {
   name       = var.helm_release_name
   repository = var.helm_repository
-  chart      = "nginx-ingress"
+  chart      = "ingress-nginx"
   version    = var.helm_chart_version
   namespace  = var.kubernetes_namespace
 
@@ -9,10 +9,11 @@ resource "helm_release" "nginx_ingress" {
 
   values = [
     templatefile("${path.module}/config/nginx_ingress_config.yaml.tmpl", {
-      ip_address   = var.load_balancer_ip
-      enable_tls   = var.enable_tls
-      tls_hostname = var.tls_hostname
-      secret_name  = var.tls_secret
+      ingress_class      = var.ingress_class
+      replica_count      = var.replica_count
+      ip_address         = var.load_balancer_ip
+      enable_default_tls = var.enable_default_tls
+      default_tls_secret = var.tls_default_secret
     }),
     var.additional_yaml_config
   ]

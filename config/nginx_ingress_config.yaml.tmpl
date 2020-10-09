@@ -1,12 +1,11 @@
 controller:
+  ingressClass: ${ingress_class}
   service:
     loadBalancerIP: ${ip_address}
-%{ if enable_tls == true ~}
+  replicaCount: ${replica_count}
+%{ if enable_default_tls == true ~}
   config:
-    force-ssl-redirect: "true"
-spec:
-  tls:
-  - hosts:
-      - ${tls_hostname}
-    secretName: ${secret_name}
+    ssl-redirect: "true"
+  extraArgs:
+    default-ssl-certificate: "${default_tls_secret}"
 %{ endif ~}
