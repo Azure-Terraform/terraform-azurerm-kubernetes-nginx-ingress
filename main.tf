@@ -33,7 +33,7 @@ resource "helm_release" "nginx" {
 data "kubernetes_service" "nginx" {
   depends_on = [helm_release.nginx]
   metadata {
-    name      = "nginx-ingress-nginx-controller"
-    namespace = "ingress-private"
+    name      = "${var.helm_release_name}-ingress-nginx-controller"
+    namespace = var.kubernetes_namespace
   }
 }
