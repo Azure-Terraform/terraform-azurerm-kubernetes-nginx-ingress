@@ -8,9 +8,3 @@ terraform {
     }
   }
 }
-
-provider "azurerm" {
-  version = ">=2.0.0"
-  features {}
-  subscription_id = "32496c5b-1147-452c-8469-3a11028f8946"
-}
