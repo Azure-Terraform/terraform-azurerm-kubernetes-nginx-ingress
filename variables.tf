@@ -51,12 +51,6 @@ variable "enable_default_tls" {
   default     = false
 }
 
-variable "tls_default_secret" {
-  description = "k8s secret containing crt/key for default tls certificate (format is {namespace}/{secret})"
-  type        = string
-  default     = ""
-}
-
 variable "additional_yaml_config" {
   description = "yaml config for helm chart to be processed last"
   type        = string

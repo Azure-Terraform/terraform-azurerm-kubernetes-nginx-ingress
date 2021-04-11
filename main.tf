@@ -18,9 +18,6 @@ resource "helm_release" "nginx" {
         config = {
           ssl-redirect = var.enable_default_tls
         }
-        extraArgs = {
-          default-ssl-certificate = var.tls_default_secret
-        }
         service = {
           loadBalancerIP = var.load_balancer_ip
           annotations = var.ingress_type == "Internal" ? {
