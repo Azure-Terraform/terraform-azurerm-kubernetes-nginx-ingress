@@ -36,10 +36,11 @@ variable "ingress_class" {
 variable "load_balancer_ip" {
   description = "loadBalancerIP"
   type        = string
+  default     = null
 }
 
 variable "replica_count" {
-  description = "The number of replicas of the Ingress controller deployment."	
+  description = "The number of replicas of the Ingress controller deployment."
   type        = number
   default     = 1
 }
@@ -60,4 +61,19 @@ variable "additional_yaml_config" {
   description = "yaml config for helm chart to be processed last"
   type        = string
   default     = ""
+}
+
+variable "ingress_type" {
+  description = "Internal or Public."
+  type        = string
+  default     = "Public"
+
+  validation {
+    condition = (
+      var.ingress_type == "Internal" ||
+      var.ingress_type == "Public"
+    )
+    error_message = "Value of ingress_type must be one of 'Internal' or 'Public'."
+  }
+
 }
