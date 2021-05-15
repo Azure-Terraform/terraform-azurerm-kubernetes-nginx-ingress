@@ -47,7 +47,7 @@ variable "replica_count" {
 
 variable "enable_default_tls" {
   description = "enable default tls (requires tls_default_secret)"
-  type        = bool
+  type        = string
   default     = "false"
 }
 
