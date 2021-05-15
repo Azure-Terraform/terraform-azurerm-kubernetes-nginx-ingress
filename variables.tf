@@ -48,7 +48,7 @@ variable "replica_count" {
 variable "enable_default_tls" {
   description = "enable default tls (requires tls_default_secret)"
   type        = bool
-  default     = false
+  default     = "false"
 }
 
 variable "additional_yaml_config" {
