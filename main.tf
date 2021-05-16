@@ -11,9 +11,9 @@ resource "helm_release" "nginx" {
       controller = {
         replicaCount = var.replica_count
         ingressClass = var.ingress_class
-        publishServic = {
+        publishService = {
           enabled      = true
-          pathOverride = "ingress/nginx-ingress-controller"
+          pathOverride = "${var.helm_release_name}-ingress-nginx-controller"
         }
         config = {
           ssl-redirect = var.enable_default_tls
