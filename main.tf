@@ -13,7 +13,7 @@ resource "helm_release" "nginx" {
         ingressClass = var.ingress_class
         publishService = {
           enabled      = true
-          pathOverride = "${var.helm_release_name}-ingress-nginx-controller"
+          pathOverride = "${var.kubernetes_namespace}/${var.helm_release_name}-ingress-nginx-controller"
         }
         config = {
           ssl-redirect = var.enable_default_tls
