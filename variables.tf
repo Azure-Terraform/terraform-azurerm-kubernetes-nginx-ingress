@@ -36,28 +36,38 @@ variable "ingress_class" {
 variable "load_balancer_ip" {
   description = "loadBalancerIP"
   type        = string
+  default     = null
 }
 
 variable "replica_count" {
-  description = "The number of replicas of the Ingress controller deployment."	
+  description = "The number of replicas of the Ingress controller deployment."
   type        = number
   default     = 1
 }
 
 variable "enable_default_tls" {
   description = "enable default tls (requires tls_default_secret)"
-  type        = bool
-  default     = false
-}
-
-variable "tls_default_secret" {
-  description = "k8s secret containing crt/key for default tls certificate (format is {namespace}/{secret})"
   type        = string
-  default     = ""
+  default     = "false"
 }
 
 variable "additional_yaml_config" {
   description = "yaml config for helm chart to be processed last"
   type        = string
   default     = ""
+}
+
+variable "ingress_type" {
+  description = "Internal or Public."
+  type        = string
+  default     = "Public"
+
+  validation {
+    condition = (
+      var.ingress_type == "Internal" ||
+      var.ingress_type == "Public"
+    )
+    error_message = "Value of ingress_type must be one of 'Internal' or 'Public'."
+  }
+
 }
