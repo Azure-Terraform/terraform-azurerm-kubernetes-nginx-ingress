@@ -4,9 +4,9 @@ output "ingress_class" {
 }
 
 output "nginx_url" {
-  value = "http://${data.kubernetes_service.nginx.status.load_balancer.0.ingress.ip}"
+  value = "http://${data.kubernetes_service.nginx.status.0.load_balancer.0.ingress.0.ip}"
 }
 
 output "load_balancer_ip" {
-  value = data.kubernetes_service.nginx.status.load_balancer.0.ingress.ip
+  value = data.kubernetes_service.nginx.status.0.load_balancer.0.ingress.0.ip
 }
