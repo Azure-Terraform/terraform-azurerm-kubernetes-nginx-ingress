@@ -11,7 +11,7 @@ This module will install an NGINX ingress module into an AKS cluster.  This is l
 | Name | Version |
 |------|---------|
 | helm | >=2.1.0 |
-| kubernetes | n/a |
+| kubernetes | ~>2.5 |
 
 ## Inputs
 
